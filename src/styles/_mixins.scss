@@ -1,0 +1,65 @@
+@use 'variables' as *;
+
+// Flexbox mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Media queries
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: var(--breakpoint-sm)) {
+      @content;
+    }
+  }
+  @if $breakpoint == md {
+    @media (min-width: var(--breakpoint-md)) {
+      @content;
+    }
+  }
+  @if $breakpoint == lg {
+    @media (min-width: var(--breakpoint-lg)) {
+      @content;
+    }
+  }
+  @if $breakpoint == xl {
+    @media (min-width: var(--breakpoint-xl)) {
+      @content;
+    }
+  }
+}
+
+// Button styles
+@mixin button-base {
+  border: none;
+  padding: var(--spacing-xxs) var(--spacing-xxs) var(--spacing-xxs)
+    var(--spacing-xs);
+  font-size: var(--font-size-regular);
+  line-height: var(--line-height-regular);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: $transition-base;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+  &:not(:last-of-type) {
+    margin-right: 10px;
+  }
+}
+
+// Container
+@mixin container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}

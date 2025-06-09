@@ -1,0 +1,39 @@
+// Colors
+
+:root {
+  --BlackGrafit: #222321;
+  --GreenAccent: #30432f;
+  --LightGray: #e1dcd7;
+  --Bezh: #e4e0d8;
+
+  --font-size-h1 : 50px;
+  --font-size-h2 : 
+  --font-size-h3:
+  --font-size-regular: 16px; 
+  --line-height-h1 : 50px;
+  --line-height-regular: 22px;
+
+  --spacing-xxs: 10px;
+  --spacing-xs: 15px;
+  --spacing-sm: 30px;
+  --spacing-md: 40px;
+  --spacing-lg : 70px;
+  --spacing-xl: 180px;
+
+  --border-radius-xs: 4px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 32px;
+
+--breakpoint-sm: 640px;
+--breakpoint-md: 768px;
+--breakpoint-lg: 1024px;
+--breakpoint-xl: 1280px;
+
+--font-family-heading: 'Playfair Display', serif;
+--font-family-base: 'Inter', sans-serif;
+
+}
+
+// Transitions
+$transition-base: all 0.2s ease;
