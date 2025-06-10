@@ -47,6 +47,12 @@
   border-radius: var(--border-radius-sm);
   cursor: pointer;
   transition: $transition-base;
+  display: inline-flex;
+  align-items: center;
+
+  svg {
+    margin-left: var(--spacing-xxs);
+  }
 
   &:hover {
     transform: translateY(-2px);
