@@ -61,8 +61,19 @@
     </div>
 
     <div class="option-menu-items">
-      <div class="lang option-menu-item">EN</div>
-      <div class="login option-menu-item">Login</div>
+      <a href="" class="lang option-menu-item">
+        EN
+        <svg
+          width="6"
+          height="4"
+          viewBox="0 0 6 4"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0 0H6L3 4L0 0Z" fill="#222321" />
+        </svg>
+      </a>
+      <a href="" class="login option-menu-item">Login</a>
     </div>
   </nav>
 </template>
@@ -95,8 +106,26 @@ nav {
 }
 .option-menu-item {
   margin-right: 20px;
+  text-decoration: none;
+  &:active,
+  &:visited {
+    color: var(--BlackGrifith);
+  }
   &:last-of-type {
     margin-right: 0;
   }
+}
+.lang {
+  @include flex-center;
+  svg {
+    margin-left: 4px;
+  }
+}
+
+.login {
+  @include button-base;
+  border: 1px solid var(--Bezh);
+  padding: 10px 12px;
+  border-radius: 6px;
 }
 </style>
