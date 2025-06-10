@@ -1,5 +1,5 @@
 <template>
-  <nav class="container">
+  <nav class="container sticky-nav">
     <div class="logo">
       <svg
         width="139"
@@ -97,6 +97,12 @@ onMounted(async () => {
 <style lang="scss" scoped>
 @use '../styles/variables' as *;
 @use '../styles/mixins' as *;
+
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
 nav {
   @include flex-between();

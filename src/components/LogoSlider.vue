@@ -1,5 +1,9 @@
 <template>
   <div class="container">
+    <div class="slider-container">
+      <p class="logos-title">{{ logoSliderContent.title }}</p>
+    </div>
+
     <div v-if="logoSliderContent" class="logos-container">
       <img
         v-for="logo in logoSliderContent.src"
@@ -30,9 +34,15 @@ onMounted(async () => {
 <style lang="scss" scoped>
 @use '../styles/variables' as *;
 @use '../styles/mixins' as *;
-
+.logos-title {
+  margin-bottom: 0;
+}
+.slider-container {
+  @include flex-center;
+}
 .logos-container {
   @include flex-center;
   gap: 60px;
+  padding: 30px var(--spacing-md);
 }
 </style>
