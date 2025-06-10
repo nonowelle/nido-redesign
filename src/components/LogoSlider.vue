@@ -36,6 +36,9 @@ onMounted(async () => {
 @use '../styles/mixins' as *;
 .logos-title {
   margin-bottom: 0;
+  color: var(--BlackGrafiti);
+  opacity: 0.4;
+  font-weight: 500;
 }
 .slider-container {
   @include flex-center;
