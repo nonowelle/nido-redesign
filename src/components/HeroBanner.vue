@@ -1,5 +1,5 @@
 <template>
-  <section class="hero-banner">
+  <section class="hero-banner container">
     <div class="hero-content">
       <h1 v-if="heroContent">{{ heroContent.title }}</h1>
 

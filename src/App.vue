@@ -1,11 +1,13 @@
 <template>
   <div class="app">
+    <Navigation />
     <HeroBanner />
   </div>
 </template>
 
 <script setup lang="ts">
 import HeroBanner from './components/HeroBanner.vue';
+import Navigation from './components/Navigation.vue';
 </script>
 
 <style lang="scss">
