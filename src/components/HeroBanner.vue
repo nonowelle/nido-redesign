@@ -1,16 +1,35 @@
 <template>
   <section class="hero-banner">
     <div class="hero-content">
-      <h1>Launch or scale your heat pump business. Instantly.</h1>
+      <h1 v-if="heroContent">{{ heroContent.title }}</h1>
 
-      <button class="cta-button b-primary">Start free trial</button>
-      <button class="cta-button b-secondary">Book a demo</button>
+      <button v-if="heroContent?.cta?.text" class="cta-button b-primary">
+        {{ heroContent.cta.text }}
+      </button>
+      <button
+        v-if="heroContent?.cta?.secondary?.text"
+        class="cta-button b-secondary"
+      >
+        {{ heroContent.cta.secondary.text }}
+      </button>
     </div>
   </section>
 </template>
 
-<script setup lang="ts">
-// Component logic can be added here
+<script setup>
+import { onMounted, ref } from 'vue';
+import { useContent } from '@/composables/useContent';
+
+const { loadContent, loading, error } = useContent();
+const heroContent = ref(null);
+
+onMounted(async () => {
+  try {
+    heroContent.value = await loadContent('components/hero');
+  } catch (e) {
+    console.error('Failed to load hero content:', e);
+  }
+});
 </script>
 
 <style lang="scss">
