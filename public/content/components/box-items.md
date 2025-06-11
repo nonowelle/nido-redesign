@@ -1,6 +1,6 @@
 ---
 boxes:
-  - Gather information with easeusing voice assistant
-  - Receive 3D plans& Schematics
-  - Make it look professional with stunning offers
+  - src/styles/assets/box-items-1.png
+  - src/styles/assets/box-items-2.png
+  - src/styles/assets/box-items-3.png
 ---

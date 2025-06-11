@@ -1,5 +1,5 @@
 <template>
-  <section class="hero-banner container">
+  <section class="hero-banner">
     <div class="hero-content">
       <h1 v-if="heroContent">{{ heroContent.title }}</h1>
 
@@ -62,12 +62,11 @@ onMounted(async () => {
 
 .hero-banner {
   width: 100%;
-  min-height: 80vh;
   @include flex-center;
   background-color: white;
   color: var(--BlackGrafit);
   text-align: center;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-xl) 0;
 }
 
 .hero-content {

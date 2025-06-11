@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div class="slider-container">
+  <div class="">
+    <div class="slider-container" v-if="logoSliderContent">
       <p class="logos-title">{{ logoSliderContent.title }}</p>
     </div>
 
@@ -46,6 +46,8 @@ onMounted(async () => {
 .logos-container {
   @include flex-center;
   gap: 60px;
-  padding: 30px var(--spacing-md);
+  padding: 30px 0 40px 0;
+  overflow: hidden;
+  width: 100%;
 }
 </style>

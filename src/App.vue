@@ -1,8 +1,9 @@
 <template>
-  <div class="app">
+  <div class="container">
     <Navigation />
     <HeroBanner />
     <LogoSlider />
+    <BoxItems />
   </div>
 </template>
 
@@ -10,14 +11,10 @@
 import HeroBanner from './components/HeroBanner.vue';
 import LogoSlider from './components/LogoSlider.vue';
 import Navigation from './components/Navigation.vue';
+import BoxItems from './components/BoxItems.vue';
 </script>
 
 <style lang="scss">
 @use './styles/variables' as *;
 @use './styles/mixins' as *;
-
-.app {
-  width: 100%;
-  min-height: 100vh;
-}
 </style>

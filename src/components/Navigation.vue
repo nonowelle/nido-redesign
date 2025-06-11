@@ -1,5 +1,5 @@
 <template>
-  <nav class="container sticky-nav">
+  <nav class="sticky-nav">
     <div class="logo">
       <svg
         width="139"
@@ -102,13 +102,21 @@ onMounted(async () => {
   position: sticky;
   top: 0;
   z-index: 100;
+  background-color: white;
+  padding: 18px 0;
+  flex-wrap: wrap;
 }
 
 nav {
   @include flex-between();
 }
+.nav-links-container {
+  display: flex;
+  flex-wrap: wrap;
+}
 .option-menu-items {
   @include flex-center;
+  flex-wrap: wrap;
 }
 .option-menu-item {
   margin-right: 20px;

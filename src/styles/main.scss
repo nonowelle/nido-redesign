@@ -20,13 +20,12 @@ body {
   overflow-x: hidden;
 }
 
-// Global styles
-.app {
-  width: 100%;
-  min-height: 100vh;
-}
 .container {
-  padding: var(--spacing-xs) var(--spacing-sm);
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 0 16px;
+  position: relative;
+  width: 100%;
 }
 
 h1 {
