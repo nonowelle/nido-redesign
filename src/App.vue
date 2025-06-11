@@ -1,9 +1,10 @@
 <template>
-  <div class="container">
+  <div class="">
     <Navigation />
     <HeroBanner />
     <LogoSlider />
     <BoxItems />
+    <ImgBanner />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import HeroBanner from './components/HeroBanner.vue';
 import LogoSlider from './components/LogoSlider.vue';
 import Navigation from './components/Navigation.vue';
 import BoxItems from './components/BoxItems.vue';
+import ImgBanner from './components/ImgBanner.vue';
 </script>
 
 <style lang="scss">

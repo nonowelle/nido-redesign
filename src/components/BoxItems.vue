@@ -1,11 +1,13 @@
 <template>
-  <div class="box-items-container" v-if="boxItemsContent">
-    <img
-      v-for="box in boxItemsContent.boxes"
-      :key="box"
-      :src="box"
-      class="box-item"
-    />
+  <div class="container">
+    <div class="box-items-container" v-if="boxItemsContent">
+      <img
+        v-for="box in boxItemsContent.boxes"
+        :key="box"
+        :src="box"
+        class="box-item"
+      />
+    </div>
   </div>
 </template>
 
