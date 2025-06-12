@@ -5,6 +5,7 @@
     <LogoSlider />
     <BoxItems />
     <ImgBanner />
+    <AbstractBanner />
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import LogoSlider from './components/LogoSlider.vue';
 import Navigation from './components/Navigation.vue';
 import BoxItems from './components/BoxItems.vue';
 import ImgBanner from './components/ImgBanner.vue';
+import AbstractBanner from './components/AbstractBanner.vue';
 </script>
 
 <style lang="scss">
