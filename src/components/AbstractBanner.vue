@@ -2,12 +2,13 @@
   <div class="container">
     <div class="abstract-banners" v-if="abstractBannerContent">
       <div
-        v-for="abstractBanner in abstractBannerContent"
+        v-for="abstractBanner in abstractBannerContent.banners"
         :key="abstractBanner.title"
         class="abstract-banner"
       >
         <h3>{{ abstractBanner.title }}</h3>
         <p>{{ abstractBanner.description }}</p>
+        <img :src="abstractBanner.logo" alt="Logo" />
 
         <!-- Loop through the features of the current abstractBanner -->
         <div class="features">
@@ -16,6 +17,7 @@
             :key="feature.id"
             class="feature"
           >
+            <img :src="feature.logo" alt="Logo" />
             <h4>{{ feature.subtitle }}</h4>
             <p>{{ feature.description }}</p>
           </div>
