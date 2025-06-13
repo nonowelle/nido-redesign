@@ -55,16 +55,36 @@ onMounted(async () => {
 </script>
 
 <style scoped lang="scss">
+@use './../styles/mixins' as *;
+
 .abstract-banner {
   display: flex;
-  gap: 110px;
-  justify-content: center;
-  align-items: center;
-  margin: 180px 77px 116px 77px;
+  flex-direction: column;
+  gap: 50px;
+  margin: 80px 0;
+
+  @include respond-to(lg) {
+
+    gap: 110px;
+    justify-content: center;
+    align-items: center;
+    margin: 180px 77px 116px 77px;
+    flex-direction: row;
+  }
 }
 
 .feature {
-  width: 40%;
+  @include respond-to(lg) {
+    width: 45%;
+  }
+}
+
+.feature-detail {
+  margin-bottom: 40px;
+
+  @include respond-to(lg) {
+    margin-bottom: 60px;
+  }
 }
 
 .feature-title {
@@ -72,6 +92,7 @@ onMounted(async () => {
   justify-content: flex-start;
   margin-bottom: 20px;
 }
+
 
 .feature-description {
   font-size: var(--font-size-block-text);
@@ -81,6 +102,10 @@ onMounted(async () => {
   max-height: 24px;
   margin-right: var(--spacing-xxs);
 
+}
+
+.testimonial {
+  margin-bottom: 30px;
 }
 
 .testimonial-logo {
