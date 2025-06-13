@@ -38,7 +38,7 @@
             <path d="M0 0H6L3 4L0 0Z" fill="#222321" />
           </svg>
         </a>
-        <a href="" class="login option-menu-item">Login</a>
+        <a href="" class="login option-menu-item b-secondary">Login</a>
       </div>
     </nav>
   </div>
