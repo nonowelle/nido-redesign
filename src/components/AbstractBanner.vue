@@ -62,6 +62,7 @@ onMounted(async () => {
   flex-direction: column;
   gap: 50px;
   margin: 80px 0;
+  border-bottom: 1px solid var(--Grafit-20);
 
   @include respond-to(lg) {
 
