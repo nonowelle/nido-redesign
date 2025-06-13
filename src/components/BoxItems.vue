@@ -30,16 +30,23 @@ onMounted(async () => {
 .box-items-container {
   flex-direction: column;
 
-  @media (min-width: $breakpoint-xs) and (max-width: $breakpoint-lg-minus-1) {
+  @media (max-width: $breakpoint-lg-minus-1) {
     display: flex;
     flex-direction: row;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     padding-bottom: var(--spacing-sm);
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
+    cursor: grab;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    scrollbar-width: none;
   }
 
   @include respond-to(lg) {
@@ -61,8 +68,8 @@ onMounted(async () => {
   justify-content: center;
   text-align: center;
 
-  @media (min-width: $breakpoint-xs) and (max-width: $breakpoint-lg-minus-1) {
-    flex: 0 0 100%;
+  @media (max-width: $breakpoint-lg-minus-1) {
+    flex: 0 0 75%;
     scroll-snap-align: start;
   }
 }
