@@ -1,17 +1,73 @@
-// Colors
+@use 'mixins' as *;
+
+
+// Typography
+:root {
+  @include respond-to(xs) {
+    --font-size-h1 : 40px;
+    --font-size-h2 : 32px; 
+    --font-size-h3 : 24px;
+    --font-size-h4 : 16px;
+    --font-size-h5 : 16px;
+    --font-size-emphasis: 32px;
+    --font-size-regular: 16px; 
+    --font-size-block-text: 16px; 
+    --font-size-block-text-small: 12px; 
+    --font-size-subtext: 12px; 
+  
+    --line-height-h1 : 46px;
+    --line-height-h2 : 42px;
+    --line-height-h3 : 28px;
+    --line-height-h4 : 24px;
+    --line-height-h5: 24px;
+    --line-height-block-text: 20px;
+    --line-height-block-text-small: 18px;
+    --line-height-subtext: 16px;
+    --line-height-regular: 22px;
+  }
+}
 
 :root {
-  --BlackGrafit: #222321;
+  @include respond-to(md) {
+    --font-size-h1 : 50px;
+    --font-size-h2 : 40px; 
+    --font-size-h3 : 32px;
+    --font-size-h4 : 18px;
+    --font-size-h5 : 16px;
+    --font-size-emphasis: 32px;
+    --font-size-regular: 16px; 
+    --font-size-block-text: 16px; 
+    --font-size-block-text-small: 14px; 
+    --font-size-subtext: 12px; 
+  
+    --line-height-h1 : 50px;
+    --line-height-h2 : 44px;
+    --line-height-h3 : 40px;
+    --line-height-h4 : 28px;
+    --line-height-h5: 24px;
+    --line-height-block-text: 24px;
+    --line-height-block-text-small: 18px;
+    --line-height-subtext: 16px;
+    --line-height-regular: 22px;
+  }
+}
+
+// Colors
+:root {
+  --GrafitPrimary: #222321;
+  --Grafit-50: #909190;
+  --Grafit-40: #A6A7A6;
+  --Grafit-20: #D3D3D3;
+  --Grafit-10: #E9E9E9;
   --GreenAccent: #30432f;
   --LightGray: #e1dcd7;
-  --Bezh: #e4e0d8;
+  --BezhPrimary: #e4e0d8;
+  --BezhLight: #F5F3F1;
 
-  --font-size-h1 : 50px;
-  --font-size-h2 : 
-  --font-size-h3:
-  --font-size-regular: 16px; 
-  --line-height-h1 : 50px;
-  --line-height-regular: 22px;
+  --GreenPrimary : #1F291E;
+  --Green : #C2CDA5;
+  --GreenLight: #D6DCC6;
+  --GreenDark: #1F291E;
 
   --spacing-xxs: 10px;
   --spacing-xs: 15px;
@@ -19,22 +75,16 @@
   --spacing-md: 40px;
   --spacing-lg : 70px;
   --spacing-xl: 90px;
-  -spacing-xxl: 130px;
+  --spacing-xxl: 130px;
 
   --border-radius-xs: 4px;
   --border-radius-sm: 8px;
   --border-radius-md: 16px;
   --border-radius-lg: 32px;
 
---breakpoint-sm: 640px;
---breakpoint-md: 768px;
---breakpoint-lg: 1024px;
---breakpoint-xl: 1280px;
-
---font-family-heading: 'Playfair Display', serif;
---font-family-base: 'Inter', sans-serif;
-
+  --font-family-heading: 'Playfair Display', serif;
+  --font-family-base: 'Inter', sans-serif;
 }
 
-// Transitions
-$transition-base: all 0.2s ease;
+
+

@@ -5,12 +5,7 @@
     </div>
 
     <div v-if="logoSliderContent" class="logos-container">
-      <img
-        v-for="logo in logoSliderContent.src"
-        :key="logo"
-        class="logo"
-        :src="logo"
-      />
+      <img v-for="logo in logoSliderContent.src" :key="logo" class="logo" :src="logo" />
     </div>
   </div>
 </template>
@@ -34,15 +29,18 @@ onMounted(async () => {
 <style lang="scss" scoped>
 @use '../styles/variables' as *;
 @use '../styles/mixins' as *;
+
 .logos-title {
   margin-bottom: 0;
-  color: var(--BlackGrafiti);
+  color: var(--GrafitPrimaryi);
   opacity: 0.4;
   font-weight: 500;
 }
+
 .slider-container {
   @include flex-center;
 }
+
 .logos-container {
   @include flex-center;
   gap: 60px;

@@ -1,4 +1,7 @@
-@use 'variables' as *;
+@use 'breakpoints' as *;
+
+// Transitions
+$transition-base: all 0.2s ease;
 
 // Flexbox mixins
 @mixin flex-center {
@@ -13,27 +16,22 @@
   justify-content: space-between;
 }
 
-// Media queries
+// Media Query Mixins
 @mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media (min-width: $breakpoint-xs) { @content; }
+  }
   @if $breakpoint == sm {
-    @media (min-width: var(--breakpoint-sm)) {
-      @content;
-    }
+    @media (min-width: $breakpoint-sm) { @content; }
   }
-  @if $breakpoint == md {
-    @media (min-width: var(--breakpoint-md)) {
-      @content;
-    }
+  @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
   }
-  @if $breakpoint == lg {
-    @media (min-width: var(--breakpoint-lg)) {
-      @content;
-    }
+  @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
   }
-  @if $breakpoint == xl {
-    @media (min-width: var(--breakpoint-xl)) {
-      @content;
-    }
+  @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
   }
 }
 
