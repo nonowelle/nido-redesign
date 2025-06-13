@@ -5,7 +5,12 @@
     </div>
 
     <div v-if="logoSliderContent" class="logos-container">
-      <img v-for="logo in logoSliderContent.src" :key="logo" class="logo" :src="logo" />
+      <div class="logos-track">
+
+        <img v-for="(logo, index) in logoSliderContent.src" :key="'first-' + index" class="logo" :src="logo" />
+
+        <img v-for="(logo, index) in logoSliderContent.src" :key="'second-' + index" class="logo" :src="logo" />
+      </div>
     </div>
   </div>
 </template>
@@ -42,10 +47,38 @@ onMounted(async () => {
 }
 
 .logos-container {
-  @include flex-center;
-  gap: 60px;
-  padding: 30px 0 40px 0;
   overflow: hidden;
   width: 100%;
+  white-space: nowrap;
+  position: relative;
+  padding: 30px 0 40px 0;
+}
+
+.logos-track {
+  display: flex;
+  animation: slide 80s linear infinite;
+  width: fit-content;
+  gap: 60px;
+
+}
+
+.logo {
+  flex-shrink: 0;
+
+  height: 50px;
+
+  object-fit: contain;
+
+  margin: 0;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 </style>
