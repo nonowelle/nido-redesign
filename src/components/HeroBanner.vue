@@ -10,7 +10,7 @@
             <path d="M5.5 12H19.5M19.5 12L13.7143 6M19.5 12L13.7143 18" stroke="currentColor" />
           </svg>
         </button>
-        <button v-if="heroContent?.cta?.secondary?.text" class="cta-button b-secondary">
+        <button v-if="heroContent?.cta?.secondary?.text" class="cta-button b-primary-light">
           {{ heroContent.cta.secondary.text }}
           <svg width="25" height="24" viewBox="0 0 25 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M5.5 12H19.5M19.5 12L13.7143 6M19.5 12L13.7143 18" stroke="currentColor" />

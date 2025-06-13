@@ -79,9 +79,28 @@ p {
 .b-primary {
   background-color: var(--GreenAccent);
   color: var(--BezhPrimary);
+
+  &:hover {
+    background-color: var(--GreenAccentLight);
+  }
 }
-.secondary {
-  background: white;
+
+.b-primary-light {
+  background: var(--BezhPrimary);
+  
+  color: var(--GrafitPrimary);
+
+  &:hover {
+    background-color: var(--BezhLight);
+  }
+}
+
+.b-secondary {
+  background-color: white;
   border: 1px solid var(--BezhPrimary);
   color: var(--GrafitPrimary);
+
+  &:hover {
+    background-color: var(--BezhPrimary);
+  }
 }
