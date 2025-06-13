@@ -1,24 +1,89 @@
 <template>
   <div class="container">
-    <div class="box-items-container" v-if="boxItemsContent">
+    <div class="box-items-container" :class="{ 'is-dragging': isDragging }" v-if="boxItemsContent"
+      ref="boxItemsContainer" @mousedown="startDrag" @mouseleave="endDrag" @mouseup="endDrag" @mousemove="doDrag"
+      @touchstart="startDrag" @touchend="endDrag" @touchmove="doDrag">
       <img v-for="box in boxItemsContent.boxes" :key="box" :src="box" class="box-item" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, onUnmounted } from 'vue';
 import { useContent } from '@/composables/useContent';
 
 const { loadContent, loading, error } = useContent();
 const boxItemsContent = ref(null);
 
+const boxItemsContainer = ref(null);
+const isDragging = ref(false);
+const startX = ref(0);
+const scrollLeft = ref(0);
+let animationFrameId = null;
+
+const startDrag = (e) => {
+  isDragging.value = true;
+  e.preventDefault();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  startX.value = clientX - boxItemsContainer.value.getBoundingClientRect().left;
+  scrollLeft.value = boxItemsContainer.value.scrollLeft;
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+    animationFrameId = null;
+  }
+};
+
+const endDrag = () => {
+  isDragging.value = false;
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+    animationFrameId = null;
+  }
+  if (!boxItemsContainer.value) return;
+
+  const itemWidth = boxItemsContainer.value.querySelector('.box-item').offsetWidth;
+  const gap = 20; // Corresponds to var(--spacing-sm)
+  const itemWidthWithGap = itemWidth + gap;
+  const currentScroll = boxItemsContainer.value.scrollLeft;
+  const snapToIndex = Math.round(currentScroll / itemWidthWithGap);
+  const targetScroll = snapToIndex * itemWidthWithGap;
+
+  boxItemsContainer.value.scrollTo({
+    left: targetScroll,
+    behavior: 'smooth',
+  });
+};
+
+const doDrag = (e) => {
+  if (!isDragging.value) return;
+  e.preventDefault();
+
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+  }
+
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const x = clientX - boxItemsContainer.value.getBoundingClientRect().left;
+  const walk = (x - startX.value) * 1;
+  const targetScrollLeft = scrollLeft.value - walk;
+
+  animationFrameId = requestAnimationFrame(() => {
+    boxItemsContainer.value.scrollLeft = targetScrollLeft;
+  });
+};
+
 onMounted(async () => {
   try {
     boxItemsContent.value = await loadContent('components/box-items');
+
+    // Removed programmatic event listeners
   } catch (e) {
     console.error('Failed to load box items content:', e);
   }
+});
+
+onUnmounted(() => {
+  // Removed programmatic event listeners clean-up
 });
 </script>
 
@@ -30,17 +95,26 @@ onMounted(async () => {
 .box-items-container {
   flex-direction: column;
 
-  @media (max-width: $breakpoint-lg-minus-1) {
+  @media (min-width: $breakpoint-xs) and (max-width: $breakpoint-lg-minus-1) {
     display: flex;
     flex-direction: row;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: var(--spacing-sm);
     padding-bottom: var(--spacing-sm);
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     cursor: grab;
+    touch-action: pan-y;
+    /* Disable user selection during drag */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    &:active {
+      cursor: grabbing;
+    }
 
     &::-webkit-scrollbar {
       display: none;
@@ -68,9 +142,8 @@ onMounted(async () => {
   justify-content: center;
   text-align: center;
 
-  @media (max-width: $breakpoint-lg-minus-1) {
-    flex: 0 0 75%;
-    scroll-snap-align: start;
+  @media (min-width: $breakpoint-xs) and (max-width: $breakpoint-lg-minus-1) {
+    flex: 0 0 100%;
   }
 }
 </style>

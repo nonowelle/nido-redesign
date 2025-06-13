@@ -63,6 +63,7 @@ onMounted(async () => {
   gap: 50px;
   margin: 80px 0;
   border-bottom: 1px solid var(--Grafit-20);
+  padding-bottom: 30px;
 
   @include respond-to(lg) {
 
