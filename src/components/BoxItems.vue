@@ -95,7 +95,7 @@ onUnmounted(() => {
 .box-items-container {
   flex-direction: column;
 
-  @media (min-width: $breakpoint-xs) and (max-width: $breakpoint-lg-minus-1) {
+  @media (max-width: $breakpoint-lg-minus-1) {
     display: flex;
     flex-direction: row;
     overflow-x: auto;
@@ -142,7 +142,7 @@ onUnmounted(() => {
   justify-content: center;
   text-align: center;
 
-  @media (min-width: $breakpoint-xs) and (max-width: $breakpoint-lg-minus-1) {
+  @media (max-width: $breakpoint-lg-minus-1) {
     flex: 0 0 100%;
   }
 }

@@ -40,6 +40,9 @@
         </a>
         <a href="" class="login option-menu-item b-secondary">Login</a>
       </div>
+      <div class="hamburger">
+        <img src="/src/styles/assets/icons/Statius=Regular.svg" alt="">
+      </div>
     </nav>
   </div>
 </template>
@@ -70,7 +73,13 @@ onMounted(async () => {
   z-index: 100;
   background-color: white;
   padding: 18px 0;
-  flex-wrap: wrap;
+
+  justify-content: flex-end;
+
+  @include respond-to(lg) {
+    flex-wrap: wrap;
+    justify-content: space-between
+  }
 }
 
 nav {
@@ -82,10 +91,29 @@ nav {
   flex-wrap: wrap;
 }
 
+.hamburger {
+  @include respond-to(lg) {
+    display: none;
+  }
+
+}
+
 .option-menu-items {
   @include flex-center;
   flex-wrap: wrap;
 }
+
+.logo,
+.nav-links-container,
+.option-menu-items {
+  display: none;
+
+  @include respond-to(lg) {
+    display: flex;
+  }
+}
+
+
 
 .option-menu-item {
   margin-right: 20px;
