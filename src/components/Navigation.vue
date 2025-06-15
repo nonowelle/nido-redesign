@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container nav" ref="nav">
     <nav class="sticky-nav">
       <div class="logo">
         <svg width="139" height="26" viewBox="0 0 139 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,6 +26,12 @@
             </clipPath>
           </defs>
         </svg>
+        <svg class="close-button" @click="toggleNav" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M4.38462 3L21 19.6154L19.6154 21L3 4.38462L4.38462 3Z" fill="#222321" />
+          <path d="M19.6154 3L3 19.6154L4.38462 21L21 4.38462L19.6154 3Z" fill="#222321" />
+        </svg>
+
       </div>
       <div v-if="navigationContent" class="nav-links-container">
         <a v-for="link in navigationContent.links" :key="link" class="menu-item" href="http://">{{ link }}</a>
@@ -40,7 +46,7 @@
         </a>
         <a href="" class="login option-menu-item b-secondary">Login</a>
       </div>
-      <div class="hamburger">
+      <div class="hamburger" @click="toggleNav" ref="hamburger">
         <img src="/src/styles/assets/icons/Statius=Regular.svg" alt="">
       </div>
     </nav>
@@ -53,6 +59,20 @@ import { useContent } from '@/composables/useContent';
 
 const { loadContent, loading, error } = useContent();
 const navigationContent = ref(null);
+const hamburger = ref(null);
+const nav = ref(null);
+
+const toggleNav = () => {
+  if (nav.value) {
+
+    if (nav.value.classList.contains('open')) {
+      nav.value.classList.remove('open');
+    } else {
+      nav.value.classList.add('open');
+    }
+
+  }
+}
 
 onMounted(async () => {
   try {
@@ -67,18 +87,83 @@ onMounted(async () => {
 @use '../styles/variables' as *;
 @use '../styles/mixins' as *;
 
+.nav {
+  &.open {
+    &.container {
+      margin: 0;
+      padding: 0;
+      justify-content: flex-end;
+    }
+
+    .sticky-nav {
+      background-color: var(--BezhPrimary);
+      height: 100vh;
+      flex-direction: column;
+      margin: 0;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 20px;
+      width: 100%;
+    }
+
+    .logo,
+    .nav-links-container {
+      display: flex;
+      flex-direction: column;
+      font-size: 30px;
+      line-height: 22px;
+    }
+
+    .logo {
+      margin-bottom: 80px;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .menu-item {
+      margin-bottom: 40px;
+      font-family: var(--font-family-heading);
+    }
+
+    .option-menu-items {
+      display: flex;
+      flex-direction: row-reverse;
+      width: 100%;
+
+      .option-menu-item {
+        flex: 1 1 0;
+        border: 1px solid white;
+        height: 100%;
+
+        &:last-of-type {
+          margin-right: var(--spacing-xxs);
+        }
+      }
+
+      .lang {
+        justify-content: space-between;
+        padding: 15px 12px;
+      }
+    }
+
+    .hamburger {
+      display: none;
+    }
+  }
+}
+
 .sticky-nav {
   position: sticky;
   top: 0;
   z-index: 100;
   background-color: white;
   padding: 18px 0;
-
   justify-content: flex-end;
 
   @include respond-to(lg) {
     flex-wrap: wrap;
-    justify-content: space-between
+    justify-content: space-between;
   }
 }
 
@@ -95,7 +180,6 @@ nav {
   @include respond-to(lg) {
     display: none;
   }
-
 }
 
 .option-menu-items {
@@ -113,11 +197,27 @@ nav {
   }
 }
 
+.menu-item {
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
 
+.hamburger,
+.close-button {
+  @include respond-to(lg) {
+    display: none;
+  }
+
+  @include flex-center;
+  flex-wrap: wrap;
+}
 
 .option-menu-item {
   margin-right: 20px;
   text-decoration: none;
+  border-radius: 6px;
 
   &:active,
   &:visited {
@@ -127,6 +227,10 @@ nav {
   &:last-of-type {
     margin-right: 0;
   }
+}
+
+.login {
+  justify-content: center;
 }
 
 .lang {
