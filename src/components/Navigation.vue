@@ -36,7 +36,10 @@
       <div v-if="navigationContent" class="nav-links-container">
         <a v-for="link in navigationContent.links" :key="link" class="menu-item" href="http://">{{ link }}</a>
       </div>
-
+      <div class="background">
+        <img class="nav-background" src="./../styles/assets/backgrounds/background-nav.svg"
+          alt="Striped background pattern">
+      </div>
       <div class="option-menu-items">
         <a href="" class="lang option-menu-item">
           EN
@@ -89,6 +92,16 @@ onMounted(async () => {
 
 .nav {
   &.open {
+
+    .nav-background {
+      display: flex;
+
+      width: 100%;
+
+      z-index: -1;
+
+    }
+
     &.container {
       margin: 0;
       padding: 0;
@@ -96,13 +109,14 @@ onMounted(async () => {
     }
 
     .sticky-nav {
+      position: relative;
       background-color: var(--BezhPrimary);
-      height: 100vh;
+      height: auto;
       flex-direction: column;
       margin: 0;
       justify-content: flex-start;
       align-items: flex-start;
-      padding: 20px;
+
       width: 100%;
     }
 
@@ -112,10 +126,16 @@ onMounted(async () => {
       flex-direction: column;
       font-size: 30px;
       line-height: 22px;
+
+    }
+
+    .nav-links-container {
+      padding: 0 20px 60px 20px;
     }
 
     .logo {
       margin-bottom: 80px;
+      padding: 0 20px;
       width: 100%;
       flex-direction: row;
       justify-content: space-between;
@@ -124,12 +144,18 @@ onMounted(async () => {
     .menu-item {
       margin-bottom: 40px;
       font-family: var(--font-family-heading);
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
     }
 
     .option-menu-items {
       display: flex;
       flex-direction: row-reverse;
       width: 100%;
+      padding: 20px;
+      margin-top: auto;
 
       .option-menu-item {
         flex: 1 1 0;
@@ -143,8 +169,14 @@ onMounted(async () => {
 
       .lang {
         justify-content: space-between;
-        padding: 15px 12px;
+        padding: 10px 12px;
       }
+    }
+
+    .background {
+      display: flex;
+      width: 100%;
+      height: 230px;
     }
 
     .hamburger {
@@ -160,6 +192,8 @@ onMounted(async () => {
   background-color: white;
   padding: 18px 0;
   justify-content: flex-end;
+  width: 100%;
+  transition: width ease 2s;
 
   @include respond-to(lg) {
     flex-wrap: wrap;
@@ -169,6 +203,10 @@ onMounted(async () => {
 
 nav {
   @include flex-between();
+}
+
+.nav-background {
+  display: none;
 }
 
 .nav-links-container {
