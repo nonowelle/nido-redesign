@@ -6,6 +6,7 @@
     <BoxItems />
     <ImgBanner />
     <AbstractBanner />
+    <FAQ />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import Navigation from './components/Navigation.vue';
 import BoxItems from './components/BoxItems.vue';
 import ImgBanner from './components/ImgBanner.vue';
 import AbstractBanner from './components/AbstractBanner.vue';
+import FAQ from './components/FAQ.vue';
 </script>
 
 <style lang="scss">
