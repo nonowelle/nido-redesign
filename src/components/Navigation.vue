@@ -72,7 +72,7 @@ const handleResize = () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
     isResizing.value = false;
-  }, 150); // Give enough time for resize to settle
+  }, 150);
 };
 
 const toggleNav = () => {
@@ -92,7 +92,6 @@ onMounted(async () => {
     console.error('Failed to load navigation content:', e);
   }
 
-  // Add resize listener
   window.addEventListener('resize', handleResize);
 });
 
@@ -205,7 +204,6 @@ onUnmounted(() => {
     }
   }
 
-  // Disable transitions during window resize
   &.disable-transitions {
     .sticky-nav {
       transition: none !important;
@@ -249,7 +247,6 @@ onUnmounted(() => {
   }
 }
 
-// ... keep existing code (nav, nav-background, nav-links-container, open+.hamburger, hamburger, option-menu-items, logo, menu-item, close-button, option-menu-item, login, lang styles)
 .nav {
   &.container {
 
