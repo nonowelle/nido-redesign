@@ -47,6 +47,7 @@ $transition-base: all 0.2s ease;
   transition: $transition-base;
   display: inline-flex;
   align-items: center;
+  margin-bottom: 10px;
 
   svg {
     margin-left: var(--spacing-xxs);

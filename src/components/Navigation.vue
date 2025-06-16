@@ -103,6 +103,7 @@ onMounted(async () => {
 
     .sticky-nav {
       position: absolute;
+      visibility: visible;
       top: 0;
       right: 0;
       background-color: var(--BezhPrimary);
@@ -111,6 +112,7 @@ onMounted(async () => {
 
       flex-direction: column;
       justify-content: flex-start;
+
       align-items: flex-start;
       transform: translateX(0);
       z-index: 1000;
@@ -196,7 +198,8 @@ onMounted(async () => {
 
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
+
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
   padding: 18px 0 0 0;
@@ -214,6 +217,7 @@ onMounted(async () => {
     flex-direction: row;
     transform: none;
     transition: none;
+    visibility: visible;
   }
 }
 
@@ -337,5 +341,6 @@ nav {
   border: 1px solid var(--BezhPrimary);
   padding: 10px 12px;
   border-radius: 6px;
+  margin-bottom: 0;
 }
 </style>
