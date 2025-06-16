@@ -1,5 +1,5 @@
 <template>
-  <div class="container nav" ref="nav">
+  <div class="container nav" :class="{ 'disable-transitions': isResizing }" ref="nav">
     <nav class="sticky-nav">
       <div class="logo">
         <svg width="139" height="26" viewBox="0 0 139 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,13 +56,24 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, onUnmounted } from 'vue';
 import { useContent } from '@/composables/useContent';
 
 const { loadContent, loading, error } = useContent();
 const navigationContent = ref(null);
 const hamburger = ref(null);
 const nav = ref(null);
+const isResizing = ref(false);
+
+let resizeTimeout;
+
+const handleResize = () => {
+  isResizing.value = true;
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    isResizing.value = false;
+  }, 150); // Give enough time for resize to settle
+};
 
 const toggleNav = () => {
   if (nav.value) {
@@ -80,6 +91,14 @@ onMounted(async () => {
   } catch (e) {
     console.error('Failed to load navigation content:', e);
   }
+
+  // Add resize listener
+  window.addEventListener('resize', handleResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+  clearTimeout(resizeTimeout);
 });
 </script>
 
@@ -185,12 +204,19 @@ onMounted(async () => {
       }
     }
   }
+
+  // Disable transitions during window resize
+  &.disable-transitions {
+    .sticky-nav {
+      transition: none !important;
+    }
+  }
 }
 
 .sticky-nav {
   position: fixed;
   top: 0;
-  right: 0;
+
   z-index: 1000;
   background-color: var(--BezhPrimary, #f5f5f5);
   height: 100vh;
@@ -200,24 +226,36 @@ onMounted(async () => {
   justify-content: flex-start;
   align-items: center;
 
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
+  @media (min-width: 0px) and (max-width: 1023px) {
+    right: 0;
+    transform: translateX(100%);
+    transition: transform .3s ease-in-out;
+  }
+
   padding: 18px 0 0 0;
 
   @include respond-to(lg) {
-    position: sticky;
-    top: 0;
-    right: auto;
+    position: fixed;
+
     background-color: white;
-    padding: 18px 0;
+    padding: 18px 20px;
     justify-content: space-between;
     height: auto;
     width: 100%;
     max-width: none;
     flex-direction: row;
-    transform: none;
-    transition: none;
+
     visibility: visible;
+  }
+}
+
+// ... keep existing code (nav, nav-background, nav-links-container, open+.hamburger, hamburger, option-menu-items, logo, menu-item, close-button, option-menu-item, login, lang styles)
+.nav {
+  &.container {
+
+    @include respond-to(lg) {
+      display: inline;
+    }
   }
 }
 
