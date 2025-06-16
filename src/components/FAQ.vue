@@ -7,7 +7,7 @@
                     <h5 class="faq-question">{{ item.question }}</h5>
                     <span class="faq-icon">{{ item.isOpen ? '-' : '+' }}</span>
                 </button>
-                <transition name="fade">
+                <transition name="slide">
                     <div class="faq-answer" v-show="item.isOpen">
                         <p>{{ item.answer }}</p>
                     </div>
@@ -61,10 +61,8 @@ const toggleFAQ = (index) => {
 <style lang="scss" scoped>
 @use '../styles/mixins' as *;
 
-
 .faq-section {
     padding: 0 20px 80px 20px;
-
     max-width: 960px;
     margin: 0 auto;
     display: flex;
@@ -76,8 +74,12 @@ const toggleFAQ = (index) => {
         padding: 120px 20px;
     }
 
-
     .faq-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        margin-bottom: 40px;
+        color: #333;
+
         @include respond-to(lg) {
             width: 45%;
         }
@@ -88,13 +90,11 @@ const toggleFAQ = (index) => {
         width: 100%;
         flex-direction: column;
         gap: 10px;
-
     }
 
     .faq-item {
         border-bottom: 1px solid #eee;
         text-align: left;
-        transition: background-color 0.3s ease;
 
         &:last-child {
             border-bottom: none;
@@ -110,7 +110,6 @@ const toggleFAQ = (index) => {
             border: none;
             cursor: pointer;
             text-align: left;
-            transition: color 0.3s ease;
 
             &:hover {
 
@@ -122,29 +121,34 @@ const toggleFAQ = (index) => {
         }
 
         .faq-question {
-            transition: color 0.3s ease;
+            margin: 0;
         }
 
         .faq-icon {
             font-size: 1.5rem;
             color: var(--BlackGrafit);
-            transition: color 0.3s ease;
+        }
+
+        .faq-answer {
+            padding-bottom: 15px;
+            overflow: hidden;
+            font-size: var(--font-size-block-text-small);
         }
     }
-
-    .faq-answer {
-        font-size: var(--font-size-block-text-small);
-    }
 }
 
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.5s ease;
+.slide-enter-active,
+.slide-leave-active {
+    transition: max-height 0.4s ease-out;
 }
 
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
+.slide-enter-from,
+.slide-leave-to {
+    max-height: 0;
+}
+
+.slide-enter-to,
+.slide-leave-from {
+    max-height: 200px;
 }
 </style>
