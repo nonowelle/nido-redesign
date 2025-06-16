@@ -31,7 +31,6 @@
           <path d="M4.38462 3L21 19.6154L19.6154 21L3 4.38462L4.38462 3Z" fill="#222321" />
           <path d="M19.6154 3L3 19.6154L4.38462 21L21 4.38462L19.6154 3Z" fill="#222321" />
         </svg>
-
       </div>
       <div v-if="navigationContent" class="nav-links-container">
         <a v-for="link in navigationContent.links" :key="link" class="menu-item" href="http://">{{ link }}</a>
@@ -49,10 +48,10 @@
         </a>
         <a href="" class="login option-menu-item b-secondary">Login</a>
       </div>
-      <div class="hamburger" @click="toggleNav" ref="hamburger">
-        <img src="/src/styles/assets/icons/Statius=Regular.svg" alt="">
-      </div>
     </nav>
+  </div>
+  <div class="hamburger" @click="toggleNav" ref="hamburger">
+    <img src="/src/styles/assets/icons/Statius=Regular.svg" alt="">
   </div>
 </template>
 
@@ -67,13 +66,11 @@ const nav = ref(null);
 
 const toggleNav = () => {
   if (nav.value) {
-
     if (nav.value.classList.contains('open')) {
       nav.value.classList.remove('open');
     } else {
       nav.value.classList.add('open');
     }
-
   }
 }
 
@@ -92,41 +89,44 @@ onMounted(async () => {
 
 .nav {
   &.open {
-
     .nav-background {
       display: flex;
-
       width: 100%;
-
       z-index: -1;
-
     }
 
     &.container {
       margin: 0;
-      padding: 0;
+      padding: 36px 20px 0 0;
       justify-content: flex-end;
     }
 
     .sticky-nav {
-      position: relative;
+      position: absolute;
+      top: 0;
+      right: 0;
       background-color: var(--BezhPrimary);
-      height: auto;
+      height: 100vh;
+      width: 100%;
+
       flex-direction: column;
-      margin: 0;
       justify-content: flex-start;
       align-items: flex-start;
-
-      width: 100%;
+      transform: translateX(0);
+      z-index: 1000;
     }
 
     .logo,
     .nav-links-container {
       display: flex;
       flex-direction: column;
-      font-size: 30px;
+      font-size: 24px;
       line-height: 22px;
 
+      @include respond-to(sm) {
+        font-size: 30px;
+        ;
+      }
     }
 
     .nav-links-container {
@@ -134,7 +134,7 @@ onMounted(async () => {
     }
 
     .logo {
-      margin-bottom: 80px;
+      margin-bottom: 60px;
       padding: 0 20px;
       width: 100%;
       flex-direction: row;
@@ -176,28 +176,44 @@ onMounted(async () => {
     .background {
       display: flex;
       width: 100%;
-      height: 230px;
-    }
+      height: 170px;
 
-    .hamburger {
-      display: none;
+      @include respond-to(sm) {
+        height: 220px;
+      }
     }
   }
 }
 
 .sticky-nav {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
-  background-color: white;
-  padding: 18px 0;
-  justify-content: flex-end;
+  right: 0;
+  z-index: 1000;
+  background-color: var(--BezhPrimary, #f5f5f5);
+  height: 100vh;
   width: 100%;
-  transition: width ease 2s;
+
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  padding: 18px 0 0 0;
 
   @include respond-to(lg) {
-    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    right: auto;
+    background-color: white;
+    padding: 18px 0;
     justify-content: space-between;
+    height: auto;
+    width: 100%;
+    max-width: none;
+    flex-direction: row;
+    transform: none;
+    transition: none;
   }
 }
 
@@ -210,11 +226,28 @@ nav {
 }
 
 .nav-links-container {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
+
+  @include respond-to(lg) {
+    display: flex;
+  }
+}
+
+.open+.hamburger {
+  visibility: hidden;
+
 }
 
 .hamburger {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  z-index: 1;
+  cursor: pointer;
+  visibility: visible;
+
+
   @include respond-to(lg) {
     display: none;
   }
@@ -223,11 +256,21 @@ nav {
 .option-menu-items {
   @include flex-center;
   flex-wrap: wrap;
+  display: none;
+
+
+  .nav.open & {
+    display: flex;
+  }
+
+
+
+  @include respond-to(lg) {
+    display: flex;
+  }
 }
 
-.logo,
-.nav-links-container,
-.option-menu-items {
+.logo {
   display: none;
 
   @include respond-to(lg) {
@@ -236,16 +279,25 @@ nav {
 }
 
 .menu-item {
+  text-decoration: none;
+  color: var(--BlackGrifith, #222321);
+
   &:hover {
     text-decoration: underline;
     cursor: pointer;
   }
 }
 
-.hamburger,
 .close-button {
+  display: none;
+  cursor: pointer;
+
+  .nav.open & {
+    display: block;
+  }
+
   @include respond-to(lg) {
-    display: none;
+    display: none !important;
   }
 
   @include flex-center;
@@ -256,6 +308,7 @@ nav {
   margin-right: 20px;
   text-decoration: none;
   border-radius: 6px;
+
 
   &:active,
   &:visited {
