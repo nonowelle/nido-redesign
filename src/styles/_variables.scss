@@ -1,57 +1,6 @@
 @use 'mixins' as *;
 
 
-// Typography
-:root {
-  @include respond-to(xs) {
-    --font-size-h1 : 40px;
-    --font-size-h2 : 32px; 
-    --font-size-h3 : 24px;
-    --font-size-h4 : 16px;
-    --font-size-h5 : 16px;
-    --font-size-emphasis: 32px;
-    --font-size-regular: 16px; 
-    --font-size-block-text: 16px; 
-    --font-size-block-text-small: 12px; 
-    --font-size-subtext: 12px; 
-  
-    --line-height-h1 : 46px;
-    --line-height-h2 : 42px;
-    --line-height-h3 : 28px;
-    --line-height-h4 : 24px;
-    --line-height-h5: 24px;
-    --line-height-block-text: 20px;
-    --line-height-block-text-small: 18px;
-    --line-height-subtext: 16px;
-    --line-height-regular: 22px;
-  }
-}
-
-:root {
-  @include respond-to(md) {
-    --font-size-h1 : 50px;
-    --font-size-h2 : 40px; 
-    --font-size-h3 : 32px;
-    --font-size-h4 : 18px;
-    --font-size-h5 : 16px;
-    --font-size-emphasis: 32px;
-    --font-size-regular: 16px; 
-    --font-size-block-text: 16px; 
-    --font-size-block-text-small: 14px; 
-    --font-size-subtext: 12px; 
-  
-    --line-height-h1 : 50px;
-    --line-height-h2 : 44px;
-    --line-height-h3 : 40px;
-    --line-height-h4 : 28px;
-    --line-height-h5: 24px;
-    --line-height-block-text: 24px;
-    --line-height-block-text-small: 18px;
-    --line-height-subtext: 16px;
-    --line-height-regular: 22px;
-  }
-}
-
 // Colors
 :root {
   --GrafitPrimary: #222321;
@@ -85,7 +34,51 @@
 
   --font-family-heading: 'Playfair Display', serif;
   --font-family-base: 'Inter', sans-serif;
+
+  --font-size-h1 : 40px;
+  --font-size-h2 : 32px; 
+  --font-size-h3 : 24px;
+  --font-size-h4 : 16px;
+  --font-size-h5 : 16px;
+  --font-size-emphasis: 32px;
+  --font-size-regular: 16px; 
+  --font-size-block-text: 16px; 
+  --font-size-block-text-small: 12px; 
+  --font-size-subtext: 12px; 
+
+  --line-height-h1 : 46px;
+  --line-height-h2 : 42px;
+  --line-height-h3 : 28px;
+  --line-height-h4 : 24px;
+  --line-height-h5: 24px;
+  --line-height-block-text: 20px;
+  --line-height-block-text-small: 18px;
+  --line-height-subtext: 16px;
+  --line-height-regular: 22px;
 }
 
-
+:root {
+  @include respond-to(md) {
+    --font-size-h1 : 50px;
+    --font-size-h2 : 40px; 
+    --font-size-h3 : 32px;
+    --font-size-h4 : 18px;
+    --font-size-h5 : 16px;
+    --font-size-emphasis: 32px;
+    --font-size-regular: 16px; 
+    --font-size-block-text: 16px; 
+    --font-size-block-text-small: 14px; 
+    --font-size-subtext: 12px; 
+  
+    --line-height-h1 : 50px;
+    --line-height-h2 : 44px;
+    --line-height-h3 : 40px;
+    --line-height-h4 : 28px;
+    --line-height-h5: 24px;
+    --line-height-block-text: 24px;
+    --line-height-block-text-small: 18px;
+    --line-height-subtext: 16px;
+    --line-height-regular: 22px;
+  }
+}
 
