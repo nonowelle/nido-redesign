@@ -13,7 +13,7 @@
             <div v-for="resource in content?.resources" :key="resource.id" class="resource-banner-card">
                 <img :src="resource.image" :alt="resource.title" class="resource-banner-image" />
                 <span class="resource-banner-type" :class="'type-' + resource.type.toLowerCase()">{{ resource.type
-                }}</span>
+                    }}</span>
                 <h3 class="resource-banner-card-title">{{ resource.title }}</h3>
                 <p class="resource-banner-desc">{{ resource.description }}</p>
             </div>
@@ -69,11 +69,12 @@ onMounted(async () => {
 
     &-list {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
 
-        @include mobile {
-            grid-template-columns: 1fr;
+        gap: 24px;
+        grid-template-columns: 1fr;
+
+        @include respond-to(lg) {
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 
@@ -99,28 +100,27 @@ onMounted(async () => {
     }
 
     &-type {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        padding: 4px 12px;
-        border-radius: 16px;
+
+        padding: 8px 10px;
+        border-radius: 6px;
         font-size: 12px;
         font-weight: 500;
         text-transform: uppercase;
+        margin-bottom: 16px;
 
         &.type-report {
-            background-color: var(--color-primary-light);
-            color: var(--color-primary);
+            background-color: var(--GreenAccentTerciary);
+
         }
 
         &.type-video {
-            background-color: var(--color-secondary-light);
-            color: var(--color-secondary);
+            background-color: var(--BezhPrimary);
+
         }
 
         &.type-event {
-            background-color: var(--color-accent-light);
-            color: var(--color-accent);
+            background-color: var(--LightBlue);
+
         }
     }
 
