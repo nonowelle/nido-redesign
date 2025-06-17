@@ -234,7 +234,7 @@ onUnmounted(() => {
     top: 0;
     z-index: 2002;
     transform: translateX(calc(100% + 20px));
-    transition: all .3s ease-in-out;
+    transition: transform .3s ease-in-out;
     position: absolute;
 
   }
@@ -256,7 +256,7 @@ onUnmounted(() => {
 
 .nav {
   &.container {
-    position: absolute;
+    position: fixed;
 
     @include respond-to(lg) {
       position: sticky;
@@ -297,10 +297,9 @@ nav {
 }
 
 .open+.hamburger {
+  position: fixed;
   visibility: hidden;
-  z-index: 1;
-
-
+  transition: visibility .3s ease;
 
   img {
     visibility: hidden;
@@ -317,7 +316,7 @@ nav {
   ;
   display: flex;
   height: 64px;
-  z-index: 2000;
+  z-index: 2001;
   position: fixed;
 
   img {

@@ -7,6 +7,7 @@
     <ImgBanner />
     <AbstractBanner />
     <FAQ />
+    <ResourceBanner />
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import BoxItems from './components/BoxItems.vue';
 import ImgBanner from './components/ImgBanner.vue';
 import AbstractBanner from './components/AbstractBanner.vue';
 import FAQ from './components/FAQ.vue';
+import ResourceBanner from './components/ResourceBanner.vue';
 </script>
 
 <style lang="scss">
