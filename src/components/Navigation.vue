@@ -117,6 +117,9 @@ onUnmounted(() => {
       margin: 0;
       padding: 36px 20px 0 0;
       justify-content: flex-end;
+      position: fixed;
+      z-index: 1;
+
     }
 
     .sticky-nav {
@@ -133,7 +136,7 @@ onUnmounted(() => {
 
       align-items: flex-start;
       transform: translateX(0);
-      z-index: 1000;
+      z-index: 2002;
     }
 
     .logo,
@@ -212,35 +215,39 @@ onUnmounted(() => {
 }
 
 .sticky-nav {
-  position: fixed;
+
   top: 0;
 
-  z-index: 1000;
+  z-index: 2001;
   background-color: var(--BezhPrimary, #f5f5f5);
   height: 100vh;
   width: 100%;
 
+
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  padding: 18px 0 0 0;
 
   @media (min-width: 0px) and (max-width: 1023px) {
     right: 0;
-    transform: translateX(100%);
-    transition: transform .3s ease-in-out;
+    top: 0;
+    z-index: 2002;
+    transform: translateX(calc(100% + 20px));
+    transition: all .3s ease-in-out;
+    position: absolute;
+
   }
 
-  padding: 18px 0 0 0;
-
   @include respond-to(lg) {
-    position: fixed;
 
+    margin: 0 auto;
     background-color: white;
     padding: 18px 20px;
     justify-content: space-between;
     height: auto;
     width: 100%;
-    max-width: none;
+    max-width: 1440px;
     flex-direction: row;
 
     visibility: visible;
@@ -249,9 +256,15 @@ onUnmounted(() => {
 
 .nav {
   &.container {
+    position: absolute;
 
     @include respond-to(lg) {
-      display: inline;
+      position: sticky;
+      z-index: 2000;
+      top: 0;
+      width: 100%;
+      background-color: white;
+      max-width: none;
     }
   }
 }
@@ -260,31 +273,62 @@ nav {
   @include flex-between();
 }
 
-.nav-background {
-  display: none;
-}
 
 .nav-links-container {
-  display: none;
-  flex-wrap: wrap;
+
+  padding: 0 20px 60px 20px;
+  display: flex;
+  flex-direction: column;
+  line-height: 22px;
+  font-size: 24px;
 
   @include respond-to(lg) {
-    display: flex;
+    flex-direction: row;
+    padding: 0;
+    font-size: var(--font-size-regular);
+  }
+
+}
+
+.background {
+  @include respond-to(lg) {
+    display: none;
   }
 }
 
 .open+.hamburger {
   visibility: hidden;
+  z-index: 1;
+
+
+
+  img {
+    visibility: hidden;
+  }
 
 }
 
 .hamburger {
+  width: 100%;
+  background-color: white;
+
+  width: 100vw;
+
+  ;
+  display: flex;
+  height: 64px;
+  z-index: 2000;
   position: fixed;
-  top: 18px;
-  right: 20px;
-  z-index: 1;
-  cursor: pointer;
-  visibility: visible;
+
+  img {
+    position: fixed;
+    top: 18px;
+    right: 20px;
+    z-index: 1;
+    cursor: pointer;
+    visibility: visible;
+  }
+
 
 
   @include respond-to(lg) {

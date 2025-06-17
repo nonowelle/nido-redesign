@@ -1,9 +1,8 @@
 <template>
-  <img
-    v-if="imgBannerContent"
-    :src="imgBannerContent.src"
-    :alt="imgBannerContent.alt"
-  />
+  <div class="container">
+    <img v-if="imgBannerContent" :src="imgBannerContent.src" :alt="imgBannerContent.alt" />
+  </div>
+
 </template>
 
 <script setup>
@@ -23,6 +22,17 @@ onMounted(async () => {
 });
 </script>
 <style lang="scss" scoped>
+@use '/src/styles/mixins' as *;
+
+.container {
+  margin: 0 auto;
+  padding: 0;
+
+  @include respond-to (lg) {
+    padding: 0 20px;
+  }
+}
+
 img {
   width: 100%;
   height: auto;
