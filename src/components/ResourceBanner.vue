@@ -4,9 +4,10 @@
             <h2 class="resource-banner-title">{{ content?.title }}</h2>
             <button class="resource-banner-button b-secondary">
                 {{ content?.button }}
-                <svg width="25" height="24" viewBox="0 0 25 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.5 12H19.5M19.5 12L13.7143 6M19.5 12L13.7143 18" stroke="currentColor" />
+                <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 6H12M12 6L7.04084 1M12 6L7.04084 11" stroke="#222321" />
                 </svg>
+
             </button>
         </div>
         <div class="resource-banner-list">
@@ -15,9 +16,15 @@
                 <span class="resource-banner-type" :class="'type-' + resource.type.toLowerCase()">{{ resource.type
                     }}</span>
                 <h3 class="resource-banner-card-title">{{ resource.title }}</h3>
-                <p class="resource-banner-desc">{{ resource.description }}</p>
             </div>
         </div>
+        <button class="resource-banner-button b-secondary b-mobile">
+            {{ content?.button }}
+            <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 6H12M12 6L7.04084 1M12 6L7.04084 11" stroke="#222321" />
+            </svg>
+
+        </button>
     </section>
 </template>
 
@@ -37,33 +44,47 @@ onMounted(async () => {
 @use './../styles/mixins' as *;
 
 .resource-banner {
-    padding: 80px 0;
+    padding: 80px 20px;
     background-color: var(--color-background);
 
     &-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 40px;
+
     }
 
     &-title {
-        font-size: 32px;
-        font-weight: 600;
-        color: var(--color-text);
+        font-size: var(--font-size-h2);
+        margin-bottom: 0;
     }
 
     &-button {
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 12px 24px;
+        padding: 12px 10px;
         border-radius: 8px;
         font-weight: 500;
+        font-size: var(--font-size-subtext);
+        line-height: var(--line-height-subtext);
         transition: background-color 0.3s ease;
+        display: none;
 
         &:hover {
             background-color: var(--color-primary-light);
+        }
+
+        @include respond-to(lg) {
+            display: flex
+        }
+
+        &.b-mobile {
+            display: flex;
+
+            @include respond-to(lg) {
+                display: none;
+            }
         }
     }
 
@@ -72,19 +93,22 @@ onMounted(async () => {
 
         gap: 24px;
         grid-template-columns: 1fr;
+        margin: 70px 0;
 
         @include respond-to(lg) {
             grid-template-columns: repeat(3, 1fr);
+            margin: 62px 0;
         }
     }
 
     &-card {
-        position: relative;
-        padding: 24px;
-        border-radius: 12px;
-        background-color: var(--color-white);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+
         transition: transform 0.3s ease;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
         &:hover {
             transform: translateY(-4px);
@@ -93,48 +117,42 @@ onMounted(async () => {
 
     &-image {
         width: 100%;
-        height: 200px;
+        height: 240px;
         object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 16px;
     }
 
     &-type {
-
+        width: min-content;
         padding: 8px 10px;
         border-radius: 6px;
         font-size: 12px;
         font-weight: 500;
         text-transform: uppercase;
-        margin-bottom: 16px;
+        margin-bottom: 5px;
 
         &.type-report {
             background-color: var(--GreenAccentTerciary);
-
         }
 
         &.type-video {
             background-color: var(--BezhPrimary);
-
         }
 
         &.type-event {
             background-color: var(--LightBlue);
-
         }
     }
 
     &-card-title {
-        font-size: 18px;
-        font-weight: 600;
-        color: var(--color-text);
+        font-size: 20px;
+        line-height: 24px;
         margin-bottom: 8px;
     }
 
     &-desc {
         font-size: 14px;
         color: var(--color-text-light);
-        line-height: 1.5;
+
     }
 }
 </style>
