@@ -11,14 +11,17 @@
                 </div>
             </div>
             <div class="footer-menu" v-if="footerContent && footerContent.menu">
-                <div class="menu-col" v-for="menu in footerContent.menu" :key="footerContent.menu">
+                <div class="footer-menu-col" v-for="menu in footerContent.menu" :key="footerContent.menu">
                     <div class="footer-menu-item" v-for="menuItem in menu" :key="menuItem"> {{ menuItem }}
                     </div>
                 </div>
             </div>
             <div class="footer-partners" v-if="footerContent && footerContent.logos">
                 <div class="footer-partners-title">{{ footerContent.logos.title }}</div>
-                <img :src="logo" class="footer-partners-logos" v-for="logo in footerContent.logos.logos" />
+                <div class="footer-partners-logos">
+                    <img :src="logo" class="footer-partners-logos-logo" v-for="logo in footerContent.logos.logos" />
+                </div>
+
             </div>
         </div>
     </div>
@@ -42,10 +45,16 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
+@use './../styles/mixins' as *;
+
 .footer {
     background-color: var(--GreenAccent);
-    padding: 100px 125px;
+    padding: 90px 0;
     display: flex;
+
+    @include respond-to(lg) {
+        padding: 100px 0;
+    }
 
     .container {
         display: flex;
@@ -56,13 +65,24 @@ onMounted(async () => {
     &-banner {
         display: flex;
         flex-direction: column;
-        width: 35%;
+        align-items: center;
+
         margin-bottom: 57px;
+
+        @include respond-to(lg) {
+            width: 35%;
+            align-items: flex-start;
+        }
 
         &-title {
             font-size: var(--font-size-h1);
             line-height: var(--line-height-h1);
-            color: var(--BezhPrimary)
+            color: var(--BezhPrimary);
+            text-align: center;
+
+            @include respond-to(lg) {
+                text-align: left;
+            }
         }
 
         .cta-button {
@@ -72,30 +92,96 @@ onMounted(async () => {
 
     &-menu {
         display: flex;
-        width: 64%;
+        order: 3;
 
-        justify-content: space-around;
+
+
+        flex-wrap: wrap;
+
+        @include respond-to(lg) {
+            width: 64%;
+            justify-content: space-around;
+            order: 2;
+            flex-wrap: nowrap;
+        }
+
+        &-col {
+            width: 50%;
+            margin-bottom: 60px;
+
+            @include respond-to(lg) {
+                width: -webkit-fill-available;
+                margin-bottom: 0;
+            }
+        }
 
         &-item {
             color: var(--BezhPrimary);
-            font-size: var(--font-size-block-text);
-            margin-bottom: 24px;
+            font-size: var(--font-size-block-text-small);
+            margin-bottom: 5px;
             flex-wrap: wrap;
-            max-width: 200px;
+
+            @include respond-to(lg) {
+                font-size: var(--font-size-block-text);
+                margin-bottom: 24px;
+            }
+
+
+
+
 
         }
     }
 
     &-partners {
         color: var(--BezhPrimary);
+        order: 2;
+        margin-bottom: 80px;
+
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        @include respond-to(lg) {
+            order: 3;
+            margin-bottom: 0;
+            display: block;
+        }
 
         &-title {
             color: var(--BezhPrimary);
             opacity: 0.4;
+            margin-bottom: 30px;
+
+            @include respond-to(lg) {
+                margin-bottom: 20px;
+            }
         }
 
         &-logos {
-            margin-right: 40px;
+            display: flex;
+            justify-content: space-between;
+
+            @include respond-to(lg) {
+                display: block;
+            }
+
+            &-logo {
+                margin-right: 40px;
+
+                width: calc(30% - 40px);
+
+                @include respond-to(lg) {
+                    width: auto;
+                }
+
+                &:last-of-type {
+                    margin-right: 0;
+                }
+            }
+
         }
     }
 }
