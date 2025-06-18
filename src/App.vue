@@ -8,6 +8,7 @@
     <AbstractBanner />
     <FAQ />
     <ResourceBanner />
+    <Footer />
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import ImgBanner from './components/ImgBanner.vue';
 import AbstractBanner from './components/AbstractBanner.vue';
 import FAQ from './components/FAQ.vue';
 import ResourceBanner from './components/ResourceBanner.vue';
+import Footer from './components/Footer.vue';
 </script>
 
 <style lang="scss">
