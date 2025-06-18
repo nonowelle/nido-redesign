@@ -64,6 +64,7 @@ export function useContent() {
       };
 
       contentCache[path] = result;
+
       return result;
     } catch (e) {
       const errorMessage =
