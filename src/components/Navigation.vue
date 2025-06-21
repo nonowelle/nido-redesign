@@ -200,6 +200,8 @@ onUnmounted(() => {
       display: flex;
       width: 100%;
       height: 170px;
+      position: absolute;
+      top: 55%;
 
       @include respond-to(sm) {
         height: 220px;
@@ -211,6 +213,11 @@ onUnmounted(() => {
     .sticky-nav {
       transition: none !important;
     }
+  }
+
+  &-background {
+    position: absolute;
+
   }
 }
 
