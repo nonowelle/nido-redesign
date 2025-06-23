@@ -1,36 +1,42 @@
 <template>
-    <section class="resource-banner container">
-        <div class="resource-banner-header">
-            <h2 class="resource-banner-title">{{ content?.title }}</h2>
-            <button class="resource-banner-button b-secondary">
-                {{ content?.button }}
-                <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 6H12M12 6L7.04084 1M12 6L7.04084 11" stroke="#222321" />
-                </svg>
-
-            </button>
-        </div>
-        <div class="resource-banner-list">
-            <div v-for="resource in content?.resources" :key="resource.id" class="resource-banner-card">
-                <img :src="resource.image" :alt="resource.title" class="resource-banner-image" />
-                <span class="resource-banner-type" :class="'type-' + resource.type.toLowerCase()">{{ resource.type
-                    }}</span>
-                <h3 class="resource-banner-card-title">{{ resource.title }}</h3>
-            </div>
-        </div>
-        <button class="resource-banner-button b-secondary b-mobile">
-            {{ content?.button }}
-            <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 6H12M12 6L7.04084 1M12 6L7.04084 11" stroke="#222321" />
-            </svg>
-
-        </button>
-    </section>
+    <div ref="el">
+        <Transition name="slide">
+            <section v-if="isVisible" class="resource-banner container">
+                <div class="resource-banner-header">
+                    <h2 class="resource-banner-title">{{ content?.title }}</h2>
+                    <button class="resource-banner-button b-secondary">
+                        {{ content?.button }}
+                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 6H12M12 6L7.04084 1M12 6L7.04084 11" stroke="#222321" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="resource-banner-list">
+                    <div v-for="resource in content?.resources" :key="resource.id" class="resource-banner-card">
+                        <img :src="resource.image" :alt="resource.title" class="resource-banner-image" />
+                        <span class="resource-banner-type" :class="'type-' + resource.type.toLowerCase()">{{
+                            resource.type
+                            }}</span>
+                        <h3 class="resource-banner-card-title">{{ resource.title }}</h3>
+                    </div>
+                </div>
+                <button class="resource-banner-button b-secondary b-mobile">
+                    {{ content?.button }}
+                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 6H12M12 6L7.04084 1M12 6L7.04084 11" stroke="#222321" />
+                    </svg>
+                </button>
+            </section>
+        </Transition>
+    </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useContent } from '@/composables/useContent';
+import { useInViewport } from '@/composables/useInViewport';
+
+const { isVisible, el } = useInViewport();
 
 const { loadContent } = useContent();
 const content = ref(null);

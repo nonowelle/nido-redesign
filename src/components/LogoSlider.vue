@@ -1,23 +1,30 @@
 <template>
-  <div class="">
-    <div class="slider-container" v-if="logoSliderContent">
-      <p class="logos-title">{{ logoSliderContent.title }}</p>
-    </div>
+  <div ref="el">
+    <Transition name="slide">
+      <div v-if="isVisible">
+        <div class="slider-container" v-if="logoSliderContent">
+          <p class="logos-title">{{ logoSliderContent.title }}</p>
+        </div>
 
-    <div v-if="logoSliderContent" class="logos-container">
-      <div class="logos-track">
+        <div v-if="logoSliderContent" class="logos-container">
+          <div class="logos-track">
 
-        <img v-for="(logo, index) in logoSliderContent.src" :key="'first-' + index" class="logo" :src="logo" />
+            <img v-for="(logo, index) in logoSliderContent.src" :key="'first-' + index" class="logo" :src="logo" />
 
-        <img v-for="(logo, index) in logoSliderContent.src" :key="'second-' + index" class="logo" :src="logo" />
+            <img v-for="(logo, index) in logoSliderContent.src" :key="'second-' + index" class="logo" :src="logo" />
+          </div>
+        </div>
       </div>
-    </div>
+    </Transition>
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useContent } from '@/composables/useContent';
+import { useInViewport } from '@/composables/useInViewport';
+
+const { isVisible, el } = useInViewport();
 
 const { loadContent, loading, error } = useContent();
 const logoSliderContent = ref(null);

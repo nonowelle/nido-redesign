@@ -1,16 +1,23 @@
 <template>
-  <div class="container">
-    <div class="box-items-container" :class="{ 'is-dragging': isDragging }" v-if="boxItemsContent"
-      ref="boxItemsContainer" @mousedown="startDrag" @mouseleave="endDrag" @mouseup="endDrag" @mousemove="doDrag"
-      @touchstart="startDrag" @touchend="endDrag" @touchmove="doDrag">
-      <img v-for="box in boxItemsContent.boxes" :key="box" :src="box" class="box-item" />
-    </div>
+  <div ref="el">
+    <Transition name="slide">
+      <div v-if="isVisible" class="container">
+        <div class="box-items-container" :class="{ 'is-dragging': isDragging }" v-if="boxItemsContent"
+          ref="boxItemsContainer" @mousedown="startDrag" @mouseleave="endDrag" @mouseup="endDrag" @mousemove="doDrag"
+          @touchstart="startDrag" @touchend="endDrag" @touchmove="doDrag">
+          <img v-for="box in boxItemsContent.boxes" :key="box" :src="box" class="box-item" />
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref, onUnmounted } from 'vue';
 import { useContent } from '@/composables/useContent';
+import { useInViewport } from '@/composables/useInViewport';
+
+const { isVisible, el } = useInViewport();
 
 const { loadContent, loading, error } = useContent();
 const boxItemsContent = ref(null);
@@ -75,8 +82,6 @@ const doDrag = (e) => {
 onMounted(async () => {
   try {
     boxItemsContent.value = await loadContent('components/box-items');
-
-    // Removed programmatic event listeners
   } catch (e) {
     console.error('Failed to load box items content:', e);
   }
