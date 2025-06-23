@@ -22,45 +22,12 @@
                     <img :src="logo" class="footer-partners-logos-logo" v-for="logo in footerContent.logos.logos" />
                 </div>
             </div>
-
-
-
         </div>
-        <div class="footer-background">
-
-
-        </div>
+        <div class="footer-background"></div>
         <div class="footer-logo">
-            <svg width="1400" height="420" viewBox="0 0 1400 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1483_721)">
-                    <g clip-path="url(#clip1_1483_721)">
-                        <path
-                            d="M703.041 360.4L563.562 99.3223H494.266V415.318H543.076V153.805L682.555 415.318H751.851V99.3223H703.041V360.4Z"
-                            fill="#1F291E" />
-                        <path d="M862.561 180.834H817.234V415.326H862.561V180.834Z" fill="#1F291E" />
-                        <path d="M862.561 99.3223H817.234V149.444H862.561V99.3223Z" fill="#1F291E" />
-                        <path
-                            d="M1081.79 215.265C1066.38 189.406 1041.98 176.472 1008.57 176.472C980.377 176.472 956.485 187.589 936.868 209.813C917.25 232.038 907.445 261.61 907.445 298.514C907.445 335.418 917.25 365.417 936.868 387.642C956.485 409.874 980.377 420.983 1008.57 420.983C1041.98 420.983 1066.38 408.057 1081.79 382.19V415.318H1127.12V99.3223H1081.79V215.257V215.265ZM1065.22 361.49C1053.02 375.878 1037.61 383.067 1019.02 383.067C1000.43 383.067 984.872 375.514 973.25 360.4C961.628 345.294 955.813 324.658 955.813 298.506C955.813 272.355 961.62 251.797 973.25 236.834C984.872 221.87 1000.12 214.388 1019.02 214.388C1037.92 214.388 1053.02 221.514 1065.22 235.743C1077.43 249.98 1083.53 270.901 1083.53 298.506C1083.53 326.111 1077.43 347.103 1065.22 361.483V361.49Z"
-                            fill="#1F291E" />
-                        <path
-                            d="M1383.17 229.865C1371.69 210.841 1357.53 197.172 1340.67 188.893C1323.82 180.613 1305.66 176.473 1286.19 176.473C1266.72 176.473 1248.63 180.613 1231.93 188.893C1215.22 197.172 1201.12 210.833 1189.65 229.865C1178.17 248.898 1172.44 271.929 1172.44 298.949C1172.44 325.969 1178.17 348.565 1189.65 367.598C1201.12 386.631 1215.22 400.291 1231.93 408.571C1248.63 416.851 1266.72 420.991 1286.19 420.991C1316.99 420.991 1343.72 410.53 1366.39 389.609C1389.06 368.688 1400.39 338.476 1400.39 298.949C1400.39 271.929 1394.64 248.898 1383.17 229.865ZM1333.27 361.056C1320.48 375.443 1304.79 382.633 1286.2 382.633C1267.61 382.633 1251.98 375.514 1239.35 361.277C1226.71 347.04 1220.39 326.27 1220.39 298.949C1220.39 271.628 1226.71 250.067 1239.35 235.965C1251.99 221.878 1267.6 214.823 1286.2 214.823C1304.8 214.823 1320.48 221.949 1333.27 236.178C1346.05 250.415 1352.45 271.336 1352.45 298.941C1352.45 326.546 1346.05 346.669 1333.27 361.048V361.056Z"
-                            fill="#1F291E" />
-                        <path d="M0 415.318H47.4041V255.273L268.805 415.318H349.723L0 162.52V415.318Z" fill="#1F291E" />
-                        <path
-                            d="M134.246 43.3458L302.515 164.985V243.96L79.7629 82.9361L39.4062 112.255L349.919 336.714V140.888L174.603 14.0264L134.246 43.3458Z"
-                            fill="#1F291E" />
-                    </g>
-                </g>
-                <defs>
-                    <clipPath id="clip0_1483_721">
-                        <rect width="1400" height="420" fill="white" />
-                    </clipPath>
-                    <clipPath id="clip1_1483_721">
-                        <rect width="1400.4" height="406.964" fill="white" transform="translate(0 14.0264)" />
-                    </clipPath>
-                </defs>
-            </svg>
-
+            <ResponsiveImage mobile-src="src/styles/assets/logos/nido-logo-mobile.svg"
+                desktop-src="src/styles/assets/logos/nido-logo-desktop.svg" alt="Nido Logo"
+                img-class="footer-logo-image" @load="onLogoLoad" @error="onLogoError" />
         </div>
         <div class="footer-socials container">
             <div class="footer-socials-date">© 2025 Nido</div>
@@ -88,20 +55,27 @@
                         stroke-width="1.33333" />
                     <circle cx="8" cy="8" r="3.33333" stroke="#E4E0D8" stroke-width="1.33333" />
                 </svg>
-
             </div>
             <div class="footer-socials-made-by">Made by O0</div>
         </div>
-
     </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useContent } from '@/composables/useContent';
+import ResponsiveImage from './ResponsiveImage.vue';
 
 const { loadContent, loading, error } = useContent();
 const footerContent = ref(null);
+
+const onLogoLoad = (event) => {
+    console.log('Footer logo loaded successfully:', event);
+};
+
+const onLogoError = (event) => {
+    console.error('Footer logo failed to load:', event);
+};
 
 onMounted(async () => {
     try {
@@ -119,7 +93,6 @@ onMounted(async () => {
 .footer {
     background-color: var(--GreenAccent);
     padding: 90px 0 0 0;
-
 
     @include respond-to(lg) {
         padding: 100px 0 20px 0;
@@ -164,15 +137,12 @@ onMounted(async () => {
         display: flex;
         order: 3;
 
-
-
         flex-wrap: wrap;
 
         @include respond-to(lg) {
             width: 50%;
             justify-content: space-around;
             order: 2;
-
         }
 
         &-col {
@@ -180,7 +150,6 @@ onMounted(async () => {
             margin-bottom: 60px;
 
             @include respond-to(lg) {
-
                 margin-bottom: 0;
                 width: 33%;
             }
@@ -247,16 +216,13 @@ onMounted(async () => {
                     margin-right: 0;
                 }
             }
-
         }
     }
 
     &-socials {
-
         color: var(--BezhPrimary);
-
         margin: 0 auto;
-        padding: 20px 0;
+        padding: 20px;
         display: flex;
         justify-content: space-between;
         width: 100%;
@@ -291,9 +257,6 @@ onMounted(async () => {
             content: "";
             position: absolute;
         }
-
-
-
     }
 
     &-logo {
@@ -307,9 +270,12 @@ onMounted(async () => {
             max-width: 1440px;
         }
 
-        svg {
+        .footer-logo-image {
             max-width: 95vw;
             max-height: 300px;
+            width: 100%;
+            height: auto;
+            display: block;
         }
     }
 }
