@@ -1,29 +1,27 @@
 <template>
   <div ref="el">
     <Transition name="slide">
-      <div v-if="isVisible" class="container">
-        <div class="abstract-banners" v-if="abstractBannerContent">
-          <div v-for="abstractBanner in abstractBannerContent.banners" :key="abstractBanner.title"
-            class="abstract-banner">
-            <div class="feature">
-              <h2>{{ abstractBanner.title }}</h2>
-              <div v-for="feature in abstractBanner.features" :key="feature.id" class="feature-detail">
-                <div class="feature-text">
-                  <div class="feature-title">
-                    <img :src="feature.logo" alt="Logo" class="logo" />
-                    <h5>{{ feature.subtitle }}</h5>
-                  </div>
-                  <p class="feature-description">{{ feature.description }}</p>
+      <div class="abstract-banners" v-if="isVisible && abstractBannerContent">
+        <div v-for="abstractBanner in abstractBannerContent.banners" :key="abstractBanner.title"
+          class="abstract-banner container">
+          <div class="feature">
+            <h2>{{ abstractBanner.title }}</h2>
+            <div v-for="feature in abstractBanner.features" :key="feature.id" class="feature-detail">
+              <div class="feature-text">
+                <div class="feature-title">
+                  <img :src="feature.logo" alt="Logo" class="logo" />
+                  <h5>{{ feature.subtitle }}</h5>
                 </div>
+                <p class="feature-description">{{ feature.description }}</p>
               </div>
             </div>
-            <div class="feature-testimonial">
-              <div class="background-container">
-                <img :key="abstractBanner.image" :src="abstractBanner.image" class="feature-image" />
-              </div>
-              <h3 class="testimonial">{{ abstractBanner.description }}</h3>
-              <img :src="abstractBanner.logo" alt="Logo" class="testimonial-logo" />
+          </div>
+          <div class="feature-testimonial">
+            <div class="background-container">
+              <img :key="abstractBanner.image" :src="abstractBanner.image" class="feature-image" />
             </div>
+            <h3 class="testimonial">{{ abstractBanner.description }}</h3>
+            <img :src="abstractBanner.logo" alt="Logo" class="testimonial-logo" />
           </div>
         </div>
       </div>
@@ -43,9 +41,7 @@ const abstractBannerContent = ref(null);
 
 onMounted(async () => {
   try {
-    abstractBannerContent.value = await loadContent(
-      'components/abstract-banner'
-    );
+    abstractBannerContent.value = await loadContent('components/abstract-banner');
     console.log(abstractBannerContent.value);
   } catch (e) {
     console.error('Failed to load abstract banner content:', e);
