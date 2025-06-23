@@ -21,11 +21,7 @@
         </div>
         <div class="feature-testimonial">
           <div class="background-container">
-            <div class="calculation-container">
-              <div class="text"></div>
-              <div class="cta"></div>
-              <div class="image"></div>
-            </div>
+            <img :key="abstractBanner.image" :src="abstractBanner.image" class="feature-image" />
           </div>
           <h3 class="testimonial">{{ abstractBanner.description }}</h3>
           <img :src="abstractBanner.logo" alt="Logo" class="testimonial-logo" />
@@ -66,10 +62,8 @@ onMounted(async () => {
   padding-bottom: 30px;
 
   @include respond-to(lg) {
-
     gap: 110px;
     justify-content: center;
-    align-items: center;
     margin: 180px 77px 116px 77px;
     flex-direction: row;
   }
@@ -98,6 +92,10 @@ onMounted(async () => {
 
 .feature-description {
   font-size: var(--font-size-block-text);
+}
+
+.feature-image {
+  width: 100%;
 }
 
 .logo {

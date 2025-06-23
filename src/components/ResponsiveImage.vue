@@ -1,12 +1,10 @@
 <template>
     <picture class="responsive-image">
-        <!-- Mobile image -->
+
         <source media="(max-width: 767px)" :srcset="mobileSrc" />
 
-        <!-- Tablet image (optional) -->
         <source v-if="tabletSrc" media="(min-width: 768px) and (max-width: 1023px)" :srcset="tabletSrc" />
 
-        <!-- Desktop image (fallback) -->
         <img :src="desktopSrc" :alt="alt" :class="imgClass" @load="onImageLoad" @error="onImageError" />
     </picture>
 </template>
