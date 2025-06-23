@@ -78,6 +78,10 @@ onMounted(async () => {
 .feature-detail {
   margin-bottom: 40px;
 
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
   @include respond-to(lg) {
     margin-bottom: 60px;
   }
@@ -96,6 +100,7 @@ onMounted(async () => {
 
 .feature-image {
   width: 100%;
+  margin-bottom: 50px;
 }
 
 .logo {
