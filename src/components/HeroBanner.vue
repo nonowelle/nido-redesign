@@ -54,7 +54,11 @@ onMounted(async () => {
   background-color: white;
   color: var(--GrafitPrimary);
   text-align: center;
-  padding: var(--spacing-xl) 0;
+  padding: var(--spacing-xl);
+
+  @include respond-to(lg) {
+    padding: 200px var(--spacing-xl) var(--spacing-xl) var(--spacing-xl);
+  }
 }
 
 .hero-content {

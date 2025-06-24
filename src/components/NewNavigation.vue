@@ -1,5 +1,5 @@
 <template>
-    <div ref="navigation" class="mobile-nav-closed">
+    <div ref="navigation" class="navigation">
         <div class="desktop-nav container">
             <div class="logo">
                 <svg width="139" height="26" viewBox="0 0 139 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -136,6 +136,10 @@ onMounted(async () => {
     window.addEventListener('resize', handleResize);
 });
 
+onUnmounted(() => {
+    window.removeEventListener('resize', handleResize);
+});
+
 
 
 </script>
@@ -155,12 +159,14 @@ onMounted(async () => {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        position: sticky;
+        position: fixed;
         z-index: 100;
         background-color: white;
-
         margin: 0 auto;
         top: 0;
+        left: 50%;
+        width: 100vw;
+        transform: translateX(-50%);
     }
 
     .menu-item {
