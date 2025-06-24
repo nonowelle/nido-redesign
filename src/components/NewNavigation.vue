@@ -87,9 +87,12 @@
                 <a href="" class="login option-menu-item b-secondary">Login</a>
             </div>
         </div>
-        <div class="hamburger" @click="toggleNav" ref="hamburger">
-            <img src="/src/styles/assets/icons/Statius=Regular.svg" alt="">
+        <div class="hamburger-container">
+            <div class="hamburger" @click="toggleNav" ref="hamburger">
+                <img src="/src/styles/assets/icons/Statius=Regular.svg" alt="">
+            </div>
         </div>
+
         <svg class="close-button" @click="toggleNav" width="24" height="24" viewBox="0 0 24 24" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path d="M4.38462 3L21 19.6154L19.6154 21L3 4.38462L4.38462 3Z" fill="#222321" />
@@ -155,7 +158,7 @@ onMounted(async () => {
         position: sticky;
         z-index: 100;
         background-color: white;
-        width: 1440px;
+
         margin: 0 auto;
         top: 0;
     }
@@ -186,7 +189,7 @@ onMounted(async () => {
 }
 
 .mobile-nav {
-    display: none;
+
     flex-direction: column;
     padding: 20px 15px;
     position: fixed;
@@ -194,6 +197,8 @@ onMounted(async () => {
     z-index: 100;
     background-color: var(--BezhPrimary);
     width: 100%;
+    left: 100%;
+    transition: left 1s ease;
 
     .nav-links-container {
         display: flex;
@@ -209,9 +214,25 @@ onMounted(async () => {
     display: none;
 }
 
+.hamburger-container {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    height: 60px;
+    background-color: white;
+    z-index: 10;
+
+    @include respond-to(lg) {
+        display: none;
+    }
+}
+
 .mobile-nav-open {
     .mobile-nav {
         display: flex;
+        position: fixed;
+        left: 0;
+        transition: left 1s ease;
 
         @include respond-to(lg) {
             display: none;
@@ -221,7 +242,7 @@ onMounted(async () => {
     .close-button {
         display: block;
         z-index: 2000;
-        position: absolute;
+        position: fixed;
         top: 20px;
         right: 20px;
         cursor: pointer;
