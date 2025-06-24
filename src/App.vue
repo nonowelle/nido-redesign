@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <Navigation />
+    <NewNavigation />
     <HeroBanner />
     <LogoSlider />
     <BoxItems />
@@ -22,6 +22,7 @@ import AbstractBanner from './components/AbstractBanner.vue';
 import FAQ from './components/FAQ.vue';
 import ResourceBanner from './components/ResourceBanner.vue';
 import Footer from './components/Footer.vue';
+import NewNavigation from './components/NewNavigation.vue';
 </script>
 
 <style lang="scss">

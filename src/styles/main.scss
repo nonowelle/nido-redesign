@@ -82,6 +82,18 @@ p {
   }
 }
 
+.option-menu-item {
+  margin-right: 20px;
+  text-decoration: none;
+  &:last-of-type {
+    margin-right: none;
+  }
+  &:visited {
+    color: var(--GrafitPrimary);
+    text-decoration: none;
+  }
+}
+
 .b-primary {
   @include button-base();
   background-color: var(--GreenAccent);

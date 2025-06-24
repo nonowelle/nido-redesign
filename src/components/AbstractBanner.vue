@@ -1,9 +1,9 @@
 <template>
   <div ref="el">
     <Transition name="slide">
-      <div class="abstract-banners" v-if="isVisible && abstractBannerContent">
+      <div class="abstract-banners container" v-if="isVisible && abstractBannerContent">
         <div v-for="abstractBanner in abstractBannerContent.banners" :key="abstractBanner.title"
-          class="abstract-banner container">
+          class="abstract-banner">
           <div class="feature">
             <h2>{{ abstractBanner.title }}</h2>
             <div v-for="feature in abstractBanner.features" :key="feature.id" class="feature-detail">
@@ -64,7 +64,7 @@ onMounted(async () => {
   @include respond-to(lg) {
     gap: 110px;
     justify-content: center;
-    margin: 180px 77px 116px 77px;
+    margin: 180px 0 116px 0;
     flex-direction: row;
   }
 }
