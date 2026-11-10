@@ -25,8 +25,8 @@
         </div>
         <div class="footer-background"></div>
         <div class="footer-logo">
-            <ResponsiveImage mobile-src="src/styles/assets/logos/nido-logo-mobile.svg"
-                desktop-src="src/styles/assets/logos/nido-logo-desktop.svg" alt="Nido Logo"
+            <ResponsiveImage mobile-src="/assets/logos/nido-logo-mobile.svg"
+                desktop-src="/assets/logos/nido-logo-desktop.svg" alt="Nido Logo"
                 img-class="footer-logo-image" @load="onLogoLoad" @error="onLogoError" />
         </div>
         <div class="footer-socials container">
@@ -247,7 +247,7 @@ onMounted(async () => {
             bottom: 0px;
             left: 50%;
             transform: translateX(-50%) scaleX(-1) rotate(180deg);
-            background-image: url("src/styles/assets/backgrounds/background-footer.svg");
+            background-image: url("/assets/backgrounds/background-footer.svg");
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;

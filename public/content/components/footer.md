@@ -23,9 +23,9 @@ menu:
 logos:
     title: 'In partnership with'
     logos:
-        - src/styles/assets/logos/institut-valencia.svg
-        - src/styles/assets/logos/enisa.svg
-        - src/styles/assets/logos/european-heat-pump-association-ehpa-logo-vector 2.svg
+        - /assets/logos/institut-valencia.svg
+        - /assets/logos/enisa.svg
+        - /assets/logos/european-heat-pump-association-ehpa-logo-vector 2.svg
 ---
 
 

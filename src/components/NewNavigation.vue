@@ -74,7 +74,7 @@
                 <a v-for="link in navigationContent.links" :key="link" class="menu-item" href="http://">{{ link }}</a>
             </div>
             <div class="background">
-                <img class="nav-background" src="./../styles/assets/backgrounds/background-nav.svg"
+                <img class="nav-background" src="/assets/backgrounds/background-nav.svg"
                     alt="Striped background pattern">
             </div>
             <div class="option-menu-items">
@@ -89,7 +89,7 @@
         </div>
         <div class="hamburger-container">
             <div class="hamburger" @click="toggleNav" ref="hamburger">
-                <img src="/src/styles/assets/icons/Statius=Regular.svg" alt="">
+                <img src="/assets/icons/Statius=Regular.svg" alt="">
             </div>
         </div>
 
