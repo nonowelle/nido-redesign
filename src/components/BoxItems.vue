@@ -87,9 +87,6 @@ onMounted(async () => {
   }
 });
 
-onUnmounted(() => {
-  // Removed programmatic event listeners clean-up
-});
 </script>
 
 <style lang="scss" scoped>
